@@ -1,0 +1,21 @@
+CREATE TABLE BankAccount (
+    AccountID INTEGER PRIMARY KEY AUTOINCREMENT,
+    AccountNumber TEXT NOT NULL UNIQUE,
+    AccountHolderName TEXT NOT NULL,
+    AccountType TEXT NOT NULL,
+    Balance REAL NOT NULL DEFAULT 0.00,
+    CreatedDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Status TEXT NOT NULL DEFAULT 'Active'
+);
+
+
+CREATE TABLE DepositeTransaction (
+    TransactionID INTEGER PRIMARY KEY AUTOINCREMENT,
+    AccountID INTEGER NOT NULL,
+    TransactionDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Amount REAL NOT NULL,
+    Description TEXT,
+    FOREIGN KEY (AccountID) REFERENCES BankAccount (AccountID)
+);
+
+
